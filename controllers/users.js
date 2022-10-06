@@ -1,6 +1,6 @@
 const { NODE_ENV, JWT_SECRET } = process.env;
-//const bcrypt = require('bcryptjs');
-//const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const { ErrorNotFound } = require('../errors/ErrorNotFound');
 const { ErrorBadRequest } = require('../errors/ErrorBadRequest');
@@ -20,21 +20,6 @@ const getCurrentUser = (req, res, next) => {
       }
     });
 };
-
-/*const getUserById = (req, res, next) => {
-  User.findById(req.params.id)
-    .orFail(() => new ErrorNotFound('Пользователь не найден'))
-    .then((user) => {
-      res.send({ data: user });
-    })
-    .catch((e) => {
-      if (e.name === 'CastError') {
-        next(new ErrorBadRequest('Ошибка данных в запросе: некорректный Id'));
-      } else {
-        next(e);
-      }
-    });
-};*/
 
 const createUser = (req, res, next) => {
   const {
@@ -86,15 +71,12 @@ const login = (req, res, next) => {
 const patchUser = (req, res, next) => {
   const userId = req.user._id;
   const { name, email } = req.body;
-  //console.log(userId);
-  //console.log(req.body);
   User.findByIdAndUpdate(userId, { name, email }, {
     new: true,
     runValidators: true,
   })
     .orFail(() => new ErrorNotFound('Пользователь не найден'))
     .then((user) => {
-      //console.log(user);
       res.send({ data: user });
     })
     .catch((e) => {
@@ -108,12 +90,9 @@ const patchUser = (req, res, next) => {
     });
 };
 
-
 module.exports = {
   createUser,
   login,
-  //getUsers,
   getCurrentUser,
-  //getUserById,
   patchUser,
 };

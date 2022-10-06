@@ -4,7 +4,7 @@ const { patchUserValidator } = require('../middlewares/validation');
 const userRouter = express.Router();
 const {
   getCurrentUser,
-  patchUser
+  patchUser,
 } = require('../controllers/users');
 
 userRouter.get('/me', getCurrentUser);
