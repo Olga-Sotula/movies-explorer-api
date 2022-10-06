@@ -3,12 +3,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-//const { errors } = require('celebrate');
+const { errors } = require('celebrate');
 const cors = require('cors');
 
 const router = require('./routes/index');
-//const { errorHandler } = require('./errors/errorHandler');
-//const { ErrorNotFound } = require('./errors/ErrorNotFound');
+const { errorHandler } = require('./errors/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
@@ -33,19 +32,10 @@ app.get('/crash-test', () => { // crash-test
 
 
 app.use(router);
-/*app.use(authRouter);
-app.use(auth);
-app.use(userRouter);
-app.use(cardRouter);
-
-app.all('*', (req, res, next) => {
-  console.log('appall');
-  next(new ErrorNotFound('Указанный маршрут не существует'));
-});
 
 app.use(errorLogger);
 app.use(errors());
-app.use(errorHandler);*/
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
