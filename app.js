@@ -6,9 +6,10 @@ const bodyParser = require('body-parser');
 //const { errors } = require('celebrate');
 //const cors = require('cors');
 
-/*const { auth } = require('./middlewares/auth');
-const { userRouter } = require('./routes/users');
-const { cardRouter } = require('./routes/cards');
+const router = require('./routes/index');
+//const { auth } = require('./middlewares/auth');
+//const { userRouter } = require('./routes/users');
+/*const { cardRouter } = require('./routes/cards');
 const { authRouter } = require('./routes/auth');
 const { errorHandler } = require('./errors/errorHandler');
 const { ErrorNotFound } = require('./errors/ErrorNotFound');
@@ -28,7 +29,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 //app.use(requestLogger); // подключаем логгер запросов
 
-
+app.use(router);
 /*app.use(authRouter);
 app.use(auth);
 app.use(userRouter);
