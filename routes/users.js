@@ -7,8 +7,8 @@ const {
   patchUser
 } = require('../controllers/users');
 
-userRouter.get('/users/me', getCurrentUser);
-userRouter.patch('/users/me', patchUserValidator, patchUser);
+userRouter.get('/me', getCurrentUser);
+userRouter.patch('/me', patchUserValidator, patchUser);
 
 module.exports = {
   userRouter,

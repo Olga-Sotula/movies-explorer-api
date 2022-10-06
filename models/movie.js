@@ -5,7 +5,7 @@ const { REGEX_URL } = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema({
   movieId: {
-    type: String,
+    type: Number,
     required: true,
   },
   nameRU: {
@@ -20,53 +20,51 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-director: {
-  type: String,
-  required: true,
-},
-duration: {
-  type: Number,
-  required: true,
-},
-year: {
-  type: String,
-  required: true,
-},
-description: {
-  type: String,
-  required: true,
-},
-image: {
-  type: String,
-  required: true,
-  validate: {
-    validator: (value) => validator.isURL(value),
-    message: 'Невалидная ссылка на постер',
+  director: {
+    type: String,
+    required: true,
   },
-},
-trailerLink: {
-  type: String,
-  required: true,
-  validate: {
-    validator: (value) => validator.isURL(value),
-    message: 'Невалидная ссылка на трейлер',
+  duration: {
+    type: Number,
+    required: true,
   },
-},
-thumbnail: {
-  type: String,
-  required: true,
-  validate: {
-    validator: (value) => validator.isURL(value),
-    message: 'Невалидная ссылка на миниатюрное изображение постера',
+  year: {
+    type: String,
+    required: true,
   },
-},
-owner: {
-  type: mongoose.Schema.Types.ObjectId,
-  ref: 'user',
-  required: true,
-},
-
-
+  description: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: true,
+    validate: {
+      validator: (value) => validator.isURL(value),
+      message: 'Невалидная ссылка на постер',
+    },
+  },
+  trailerLink: {
+    type: String,
+    required: true,
+    validate: {
+      validator: (value) => validator.isURL(value),
+      message: 'Невалидная ссылка на трейлер',
+    },
+  },
+  thumbnail: {
+    type: String,
+    required: true,
+    validate: {
+      validator: (value) => validator.isURL(value),
+      message: 'Невалидная ссылка на миниатюрное изображение постера',
+    },
+  },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+    required: true,
+  },
 });
 
 module.exports = mongoose.model('movie', movieSchema);

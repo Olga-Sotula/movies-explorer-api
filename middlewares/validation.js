@@ -32,10 +32,19 @@ const patchUserValidator = celebrate({
   }),
 });
 
-/*const createCardValidator = celebrate({
+const createMovieValidator = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().required().min(2).max(30),
-    link: Joi.string().required().regex(REGEX_URL),
+    movieId: Joi.number().required(),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
+    country: Joi.string().required(),
+    director: Joi.string().required(),
+    duration: Joi.number().required(),
+    year: Joi.string().required(),
+    description: Joi.string().required(),
+    image: Joi.string().required().regex(REGEX_URL),
+    trailerLink: Joi.string().required().regex(REGEX_URL),
+    thumbnail: Joi.string().required().regex(REGEX_URL),
   }),
 });
 
@@ -43,7 +52,7 @@ const idValidator = celebrate({
   params: Joi.object().keys({
     id: Joi.string().hex().length(24),
   }),
-});*/
+});
 
 module.exports = {
   //createUserValidator,
@@ -51,6 +60,6 @@ module.exports = {
   //getUserValidator,
   patchUserValidator,
   //updateUserAvatarValidator,
-  //createCardValidator,
-  //idValidator,
+  createMovieValidator,
+  idValidator,
 };
