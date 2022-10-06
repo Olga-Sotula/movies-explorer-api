@@ -17,12 +17,6 @@ const loginValidator = celebrate({
   }),
 });
 
-/*const getUserValidator = celebrate({
-  params: Joi.object().keys({
-    id: Joi.string().hex().length(24),
-  }),
-});*/
-
 const patchUserValidator = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
@@ -55,9 +49,7 @@ const idValidator = celebrate({
 module.exports = {
   createUserValidator,
   loginValidator,
-  //getUserValidator,
   patchUserValidator,
-  //updateUserAvatarValidator,
   createMovieValidator,
   idValidator,
 };

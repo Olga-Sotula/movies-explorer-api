@@ -10,29 +10,29 @@ const getMovies = (req, res, next) => {
 };
 
 const createMovie = (req, res, next) => {
-  /*const owner = req.user._id;
-  const { name, link } = req.body;
+  const owner = req.user._id;
+  const { movieId, nameRU, nameEN, country, director, duration, year, description, image, trailerLink, thumbnail } = req.body;
 
-  Card.create({ name, link, owner })
-    .then((card) => res.send({ data: card }))
+  Movie.create({ movieId, nameRU, nameEN, country, director, duration, year, description, image, trailerLink, thumbnail, owner })
+    .then((movie) => res.send({ data: movie }))
     .catch((e) => {
       if (e.name === 'ValidationError') {
         next(ErrorBadRequest('Ошибка данных в запросе'));
       } else {
         next(e);
       }
-    });*/
+    });
 };
 
 const deleteMovieById = (req, res, next) => {
   Movie.findById(req.params.id)
     .orFail(() => new ErrorNotFound('Фильм не найден'))
     .then((movie) => {
-      /*if (!card.owner.equals(req.user._id)) {
+      if (!movie.owner.equals(req.user._id)) {
         throw new ErrorForbidden('Отсутствуют права на удаление карточки');
-      } else {*/
+      } else {
         return Movie.findByIdAndDelete(req.params.id);
-      //}
+      }
     })
     .then((deletedMovie) => res.send({ data: deletedMovie }))
     .catch((e) => {
