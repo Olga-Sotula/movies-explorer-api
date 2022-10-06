@@ -1,0 +1,23 @@
+{
+  "name": "movies-explorer-api",
+  "version": "1.0.0",
+  "description": "Practicum yandex. Graduate work. Backend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint .",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Olga-Sotula/movies-explorer-api.git"
+  },
+  "keywords": [],
+  "author": "Olga Sotula",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Olga-Sotula/movies-explorer-api/issues"
+  },
+  "homepage": "https://github.com/Olga-Sotula/movies-explorer-api#readme"
+}
