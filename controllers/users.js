@@ -34,13 +34,11 @@ const getCurrentUser = (req, res, next) => {
         next(e);
       }
     });
-};
+};*/
 
 const createUser = (req, res, next) => {
   const {
     name,
-    about,
-    avatar,
     email,
     password,
   } = req.body;
@@ -48,16 +46,12 @@ const createUser = (req, res, next) => {
     .then((hashedPassword) => {
       User.create({
         name,
-        about,
-        avatar,
         email,
         password: hashedPassword,
       })
         .then((user) => {
           const createdUser = {
             name: user.name,
-            about: user.about,
-            avatar: user.avatar,
             email: user.email,
           };
           res.send({ data: createdUser });
@@ -87,7 +81,7 @@ const login = (req, res, next) => {
       res.send({ token });
     })
     .catch(next);
-};*/
+};
 
 const patchUser = (req, res, next) => {
   const userId = req.user._id;
@@ -116,8 +110,8 @@ const patchUser = (req, res, next) => {
 
 
 module.exports = {
-  //createUser,
-  //login,
+  createUser,
+  login,
   //getUsers,
   getCurrentUser,
   //getUserById,
