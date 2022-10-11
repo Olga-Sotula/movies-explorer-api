@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const helmet = require('helmet');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
@@ -8,11 +9,12 @@ const cors = require('cors');
 const router = require('./routes/index');
 const { errorHandler } = require('./errors/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { limiter } = require('./middlewares/limiter');
 
 const { PORT = 3000 } = process.env;
 
 const app = express();
-
+app.use(helmet());
 app.use(cors());
 
 mongoose.connect('mongodb://localhost:27017/moviesdb', {
@@ -22,6 +24,7 @@ mongoose.connect('mongodb://localhost:27017/moviesdb', {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger); // подключаем логгер запросов
+app.use(limiter);
 
 app.get('/crash-test', () => { // crash-test
   setTimeout(() => {
