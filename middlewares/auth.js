@@ -4,8 +4,7 @@ const { ErrorBadAuth } = require('../errors/ErrorBadAuth');
 
 const auth = (req, res, next) => {
   const { authorization } = req.headers;
-  console.log(auth);
-  console.log(authorization);
+
   if (!authorization || !authorization.startsWith('Bearer ')) {
     throw new ErrorBadAuth('Ошибка аутентификации');
   }
@@ -18,7 +17,6 @@ const auth = (req, res, next) => {
   } catch (e) {
     next(new ErrorBadAuth('Ошибка аутентификации'));
   }
-  console.log(payload);
   req.user = payload;
   next();
 };
